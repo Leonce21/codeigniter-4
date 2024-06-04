@@ -37,76 +37,97 @@
             <div class="pd-20 card-box mb-30">
                 <h2 class="text-center text-primary mb-30">Les informations de votre demande de CARTE GRISE</h2>
                 <hr>
-                <?= csrf_field(); ?>
-            <?php if(!empty(session()->getFlashdata('success'))) : ?>
+                
 
-            <div class="alert alert-success">
-                <?= session()->getFlashdata('success') ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <?php if (isset($records)): ?>
 
-            <?php endif; ?>
-            <?php if(!empty(session()->getFlashdata('fail'))) : ?>
-
-            <div class="alert alert-danger">
-                <?= session()->getFlashdata('fail') ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <?php endif; ?>
+                    <div class="text-center">
+                        <p style="font-size:20px"><?php echo $records['NIU']; ?> : nouvelle</p>
+                        <p style="font-size:25px"><?php echo $records['price']; ?></p>
+                    </div>
                    
-            <?php if (isset($records)): ?>
 
-<table border="1" class="table hover data-table-export nowrap">
-    <tr>
-        <th>Field</th>
-        <th>Value</th>
-    </tr>
-    <tr>
-        <td>Nom</td>
-        <td>
-            <?php echo $records['nom']; ?>
-        </td>
-    </tr>
-    <tr>
-        <td>Prénom</td>
-        <td><?php echo $records['prenom']; ?></td>
-    </tr>
-    <tr>
-        <td>Sexe</td>
-        <td><?php echo $records['sex']; ?></td>
-    </tr>
-    <tr>
-        <td>Numero du chasis</td>
-        <td><?php echo $records['IMCHASSIS']; ?></td>
-    </tr>
-   
-   
-    
-</table>
+                    <form action="">
+                        <div class="row">
 
-<?php else: ?>
+                            <div class="form-group col-md-6">
+                                <label for=""><b>Noms</b></label>
+                                <input readonly type="text" class="form-control" name="nom"
+                                    value="<?php echo $records['nom']; ?>">
 
-<p>No Cartegrise information found.</p>
+                            </div>
 
-<?php endif; ?>
+                            <div class="form-group col-md-6">
+                                <label for=""><b>Prenoms</b></label>
+                                <input readonly type="text" class="form-control" name="prenom"
+                                    value="<?php echo $records['prenom']; ?>">
 
-                <div class="modal-footer">
+                            </div>
 
-                    <a href="<?php echo base_url('new-cartegrise')?>">
-                        <button class="btn btn-secondary">retour </button>
-                    </a>
+                            <div class="form-group col-md-6">
+                                <label for="gender"><b>Sexe</b></label>
+                                <input readonly type="text" class="form-control" name="prenom"
+                                    value="<?php echo $records['sex']; ?>">
+                            </div>
 
-                    <a href="<?php echo site_url('payment')?>">
-                        <button class="btn btn-primary">Suivant </button>
-                    </a>
-                </div>
+                            <div class="form-group col-md-6">
+                                <label for=""><b>Telephone mobile <span class="text-red-50">*</span></b></label>
+                                <input readonly type="text" class="form-control" name="phone" value="<?php echo $records['phone']; ?>">
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for=""><b>E-mail<span class="text-red-50">*</span></b></label>
+                                <input readonly type="email" class="form-control" name="email" value="<?php echo $records['email']; ?>">
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for=""><b>NIU</b></label>
+                                <input readonly type="text" class="form-control" name="NIU" value="<?php echo $records['NIU']; ?>">
+                            
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for=""><b>Châssis</b></label>
+                                <input readonly type="text" class="form-control" name="IMCHASSIS" value="<?php echo $records['IMCHASSIS']; ?>">
+                            
+                            </div>
+
+                            
+                            <div class="form-group col-md-6">
+                                <label for=""><b>Puissance</b></label>
+                                <input readonly type="text" class="form-control" name="IMPUISSANCE" value="<?php echo $records['IMPUISSANCE']; ?>">
+                            
+                            </div>
+
+
+
+                        </div>
+
+                    </form>
+                <?php else: ?>
+
+                    <p>No Cartegrise information found.</p>
+
+                <?php endif; ?>
+
+            </div>
+
+            
+
+            <div class="modal-footer">
+
+                <a href="<?php echo base_url('new-cartegrise')?>">
+                    <button class="btn btn-secondary">retour </button>
+                </a>
+
+                <a href="<?php echo site_url('payment')?>">
+                    <button class="btn btn-primary">Suivant </button>
+                </a>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- js -->

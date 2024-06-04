@@ -84,10 +84,10 @@ class Dashboard extends BaseController
             ],
 
             'file' => [
-                'rules' => 'uploaded[file]|max_size[file, 1024]|mime_in[file, image/jpeg,image/png,image/gif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document]',
+                'rules' => 'uploaded[file]|max_size[file, 10240]|mime_in[file, image/jpeg,image/png,image/gif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document]',
                 'errors' => [
                     'uploaded' => 'Please select a file to upload.',
-                    'max_size' => 'File size must be under 1MB.',
+                    'max_size' => 'File size must be under 10MB.',
                     'mime_in' => 'Invalid file type. Allowed types: images, Word, PDF.',
                 ],
             ],
@@ -175,13 +175,15 @@ class Dashboard extends BaseController
                 'IMCYL' => $values['IMCYL'],
                 'IMENERGIE' => $values['IMENERGIE'],
                 'genre' => $values['genre'],
+                'IMPUISSANCE' => $values['IMPUISSANCE'],
                 'marque' => $values['marque'],
                 'price' => $values['price'], // Assuming price is calculated earlier
                 'file' => $values['file'],
+               
             ];
-            $data['records'] = $values;
-            echo view('pages/verification_cartegrisedata', $data);
-            //return view('verification_cartegrisedata', $insertedData);
+            $data['records'] = $insertedData;
+            return view('pages/verification_cartegrisedata', $data);
+            //return redirect()->to('verification_cartegrisedata')->with('verification_cartegrisedata', $data);
         }
         
 
